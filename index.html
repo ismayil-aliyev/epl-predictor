@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Table Predictor — EPL prediction league</title>
+<meta name="description" content="Who called the Premier League table best? A prediction accuracy league, scored season by season." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="brand">
+        <span class="brand-mark">TP</span>
+        <div class="brand-text">
+          <h1>Table predictor</h1>
+          <p class="brand-sub">Who called the table best</p>
+        </div>
+      </div>
+      <nav class="season-tabs" id="season-tabs" role="tablist" aria-label="Season"></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="hero-strip" id="hero-strip" aria-label="Season summary"></section>
+
+    <section class="panel" id="leaderboard-panel">
+      <div class="panel-head">
+        <h2>Leaderboard</h2>
+        <div class="panel-tools">
+          <input type="search" id="predictor-search" placeholder="Find a predictor" aria-label="Search predictors" />
+        </div>
+      </div>
+      <p class="panel-note">Each row scores a predictor's full 20-team table against how the season actually finished. The strip shows accuracy per team — solid means exact, fading toward the edge means further off. Click a row to see the full breakdown.</p>
+      <div id="leaderboard" class="leaderboard"></div>
+    </section>
+
+    <section class="panel" id="predictor-detail-panel" hidden>
+      <div class="panel-head">
+        <h2 id="predictor-detail-name">Predictor</h2>
+        <button class="close-btn" id="close-predictor-detail" aria-label="Close">Close</button>
+      </div>
+      <div id="predictor-detail"></div>
+    </section>
+
+    <section class="panel" id="teams-panel">
+      <div class="panel-head">
+        <h2>Team by team</h2>
+      </div>
+      <p class="panel-note">Pick a team to see who called its finish, ranked by who got closest.</p>
+      <div id="team-grid" class="team-grid"></div>
+    </section>
+
+    <section class="panel" id="team-detail-panel" hidden>
+      <div class="panel-head">
+        <h2 id="team-detail-name">Team</h2>
+        <button class="close-btn" id="close-team-detail" aria-label="Close">Close</button>
+      </div>
+      <div id="team-detail"></div>
+    </section>
+
+    <section class="panel" id="crowd-panel">
+      <div class="panel-head">
+        <h2>Wisdom of the crowd</h2>
+      </div>
+      <p class="panel-note">The average predicted position for each team across every submitted table, compared with where they actually finished.</p>
+      <div id="crowd-table" class="crowd-table"></div>
+    </section>
+
+    <section class="panel methodology-panel" id="methodology-panel">
+      <button class="methodology-toggle" id="methodology-toggle" aria-expanded="false" aria-controls="methodology-body">
+        How scoring works
+        <span class="chev">›</span>
+      </button>
+      <div id="methodology-body" class="methodology-body" hidden>
+        <p>Every predictor ranks all 20 teams 1st to 20th before the season starts. For each team, we take the difference between where it actually finished and where it was predicted — call that delta.</p>
+        <p>Accuracy for that team is <code>(19 − delta) / 19</code>. Predict a team's exact final position and you get full marks for it. Predict Liverpool to finish 20th when they actually win the league, and you get zero for it.</p>
+        <p>A predictor's overall score is the average of their per-team accuracy across all 20 teams, so every team counts equally.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Table predictor — a season-by-season prediction league.</p>
+    </div>
+  </footer>
+
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
